@@ -6,20 +6,17 @@ $(document).ready(function(){
         dataType: "json",
         success: function(data) {
                $(data).each(function(index,d){
-           
                    var path = d.path;
                    var title= d.title;
                    var city = d.city;
                    var date =  d.taken;
                    var country = d.country;            
-                   item = "<li><img class=\"sqimage\" src=\"images/square/"+path+"\" alt=\""+title+"\" ipath=\""+path+"\" icity=\""+city+"\" icountry=\""+country+"\" idate=\""+date+"\" ititle=\""+title+"\"></li>"
-                   $(".gallery").append(item);
+                   item = "<li><img class=\"sqimage\" alt=\""+title+"\" src=\"images/square/"+path+"\"  ipath=\""+path+"\" icity=\""+city+"\" icountry=\""+country+"\" idate=\""+date+"\" ititle=\""+title+"\"></li>"
+                   $(".gallery").append(item);  
                    });
             },
             error: function() { alert("error loading file");  
        }
-
-       
     });
       
     $(document).on("mouseenter",".sqimage",function(){
@@ -51,11 +48,9 @@ $(document).ready(function(){
       { 
         var x = 4 + event.pageX;
         var y = 4 + event.pageY;
-        $("#preview").css("left",x);
-        $("#preview").css("top",y);
+        // $("#preview").css("left",x);
+        // $("#preview").css("top",y);
+        $("#preview").offset({top:y,left:x});
       });
-
-    
-
     
 });
