@@ -11,7 +11,7 @@ $(document).ready(function(){
                    var title= d.title;
                    var city = d.city;
                    var date =  d.taken;            
-                   item = "<li><img src=\"images/square/"+path+"\" alt=\""+title+"\" ipath=\""+path+"\" icity=\""+city+"\" idate=\""+date+"\" ititle=\""+title+"\"></li>"
+                   item = "<li><img class=\"sqimage\" src=\"images/square/"+path+"\" alt=\""+title+"\" ipath=\""+path+"\" icity=\""+city+"\" idate=\""+date+"\" ititle=\""+title+"\"></li>"
                    $(".gallery").append(item);
                    });
             },
@@ -21,15 +21,15 @@ $(document).ready(function(){
        
     });
       
-    $(document).on("mouseenter","img",function(){
+    $(document).on("mouseenter",".sqimage",function(){
         //alert("ok");
         $(this).addClass("gray");
         var title = $(this).attr("ititle")
        var city =  $(this).attr("icity");
        var date = $(this).attr("idate");
        var path = $(this).attr("ipath");
-        var ditem = "<div id=\"preview\" title=\""+title+"\"><img src=\"images/medium/"+path+"\" alt=\""+title+"\"><p>"+title+","+city+","+date+"</p></div>"
-        $(".container").append(ditem);  
+      var ditem = "<div class=\"mdimage\" id=\"preview\" title=\""+title+"\"><img src=\"images/medium/"+path+"\" alt=\""+title+"\"><p>"+title+","+city+","+date+"</p></div>"
+        $("body").append(ditem);  
       });
 
       $(document).on("mouseleave","img",function(){
@@ -43,6 +43,15 @@ $(document).ready(function(){
                  $(this).remove();
              }
         })
+      });
+
+
+      $(document).on("mousemove",function(event)
+      { 
+        var x = 6 + event.pageX;
+        var y = 6 + event.pageY;
+        $("#preview").css("left",x);
+        $("#preview").css("top",y);
       });
 
     

@@ -25,7 +25,7 @@
 #preview {
     position: absolute;
     padding: 10px 10px 0 10px;
-    display: none;
+    display: block;
     background-color: #424242;
 }
 #preview p {
