@@ -10,23 +10,24 @@ $(document).ready(function(){
                    var title= d.title;
                    var city = d.city;
                    var date =  d.taken;
-                   var country = d.country;            
-                   item = "<li><img class=\"sqimage\" alt=\""+title+"\" src=\"images/square/"+path+"\"  ipath=\""+path+"\" icity=\""+city+"\" icountry=\""+country+"\" idate=\""+date+"\" ititle=\""+title+"\"></li>"
-                   $(".gallery").append(item);  
+                   var country = d.country;           //Adding p tag element to store other attributes which we require later            
+                   item = "<li><img alt=\""+title+"\" src=\"images/square/"+path+"\"><p class=\"pimg\" ipath=\""+path+"\" icity=\""+city+"\" icountry=\""+country+"\" idate=\""+date+"\" ititle=\""+title+"\"></p></li>"
+                   $(".gallery").append(item);
+                   $(".pimg").hide();  
                    });
             },
             error: function() { alert("error loading file");  
        }
     });
       
-    $(document).on("mouseenter",".sqimage",function(){
+    $(document).on("mouseenter","img",function(){
         //alert("ok");
         $(this).addClass("gray");
-        var title = $(this).attr("ititle")
-       var city =  $(this).attr("icity");
-       var date = $(this).attr("idate");
-       var path = $(this).attr("ipath");
-       var country = $(this).attr("icountry");
+        var title = $(this).attr("alt")
+       var city =  $(this).next().attr("icity");
+       var date = $(this).next().attr("idate");
+       var path = $(this).next().attr("ipath");
+       var country = $(this).next().attr("icountry");
       var ditem = "<div class=\"mdimage\" id=\"preview\" title=\""+title+"\"><img src=\"images/medium/"+path+"\" alt=\""+title+"\"><p>"+title+"<br><i>"+city+", "+country+"</i> ["+date+"]</p></div>"
         $("body").append(ditem);  
       });
